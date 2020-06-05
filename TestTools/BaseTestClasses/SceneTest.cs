@@ -115,8 +115,8 @@ namespace E7.Minefield
         /// <summary>
         /// SetUp phase before a test.
         /// Can be overriden
-        /// </summary>
-        protected virtual IEnumerator PreloadScene()
+        /// </summary>²
+        public virtual IEnumerator PreloadScene()
         {
             //Debug.Log($"Preloading {Scene}");
             if (Application.CanStreamedLevelBeLoaded(Scene))
@@ -149,7 +149,7 @@ namespace E7.Minefield
         /// CleanUp phase between tests.
         /// Can be overriden.
         /// </summary>
-        protected virtual IEnumerator CleanUp()
+        public virtual IEnumerator CleanUp()
         {
             //Debug.Log($"Clean up {Scene}");
             Utility.CleanTestScene();
