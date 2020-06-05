@@ -27,7 +27,7 @@ namespace E7.Minefield
         /// Scene to load on each test's [SetUp]. You have to <see cref="ActivateScene()"> manually in your test case.
         /// </summary>
         protected abstract string Scene { get; }
-        private AsyncOperation aoNormal;
+        protected AsyncOperation aoNormal;
 #if HAS_AAS
         private bool aas;
         private AsyncOperationHandle<SceneInstance> aoAAS;
@@ -91,7 +91,7 @@ namespace E7.Minefield
         /// <summary>
         /// Silence annoying logs in-between tests about no listener in the scene.
         /// </summary>
-        private AudioListener TempListener
+        protected AudioListener TempListener
         {
             get
             {
@@ -109,10 +109,14 @@ namespace E7.Minefield
             }
         }
 
-        internal const string tempListenerName = "Minefield audio listener";
+        protected const string tempListenerName = "Minefield audio listener";
 
         [UnitySetUp]
-        public IEnumerator PreloadScene()
+        /// <summary>
+        /// SetUp phase before a test.
+        /// Can be overriden
+        /// </summary>
+        protected virtual IEnumerator PreloadScene()
         {
             //Debug.Log($"Preloading {Scene}");
             if (Application.CanStreamedLevelBeLoaded(Scene))
@@ -141,7 +145,11 @@ namespace E7.Minefield
         }
 
         [UnityTearDown]
-        public IEnumerator CleanUp()
+        /// <summary>
+        /// CleanUp phase between tests.
+        /// Can be overriden.
+        /// </summary>
+        protected virtual IEnumerator CleanUp()
         {
             //Debug.Log($"Clean up {Scene}");
             Utility.CleanTestScene();
