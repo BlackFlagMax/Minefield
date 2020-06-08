@@ -110,7 +110,7 @@ namespace E7.Minefield
         /// When you just start writing a test to be an alternative to Play Mode button, when the condition wasn't fleshed out well yet
         /// you may want unlimited time to play around.
         /// </summary>
-        public static IEnumerator WaitForever() 
+        public static IEnumerator WaitForever()
         {
             yield return new WaitForSeconds(float.MaxValue);
         }

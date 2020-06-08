@@ -51,7 +51,7 @@ namespace E7.Minefield
                 var selectable = found.GameObject.GetComponent<Selectable>();
                 bool interactable = (selectable == null || selectable.IsInteractable());
 
-                //Debug.Log($"{found.GameObject.name} - {firstHitMatchesExpectedObject} {handleDown} {handleClick} {selectable} {selectable?.IsInteractable()}");
+                Debug.Log($"{found.GameObject.name} - {firstHitMatchesExpectedObject} {handleDown} {handleClick} {selectable} {selectable?.IsInteractable()}");
                 if (!interactable || (!handleDown && !handleUp && !handleClick))
                 {
                     isClickable = false;
