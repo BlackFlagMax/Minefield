@@ -34,30 +34,11 @@ namespace E7.Minefield
 
             Canvas foundCanvas = found.GameObject.GetComponentInParent(typeof(Canvas)) as Canvas;
 
-            bool isWorldOrCameraSpace = foundCanvas.renderMode == RenderMode.ScreenSpaceCamera || foundCanvas.renderMode == RenderMode.WorldSpace;
-
-            //Debug.Log($"Is camera space or world space : {isWorldOrCameraSpace}");
-
             bool isClickable = true;
             if (found is IHandlerBeacon inb)
             {
                 GameObject firstHit;
-                if(isWorldOrCameraSpace && false)
-                {
-                    Vector3 worldPos = found.GameObject.transform.position;
-                    //Vector3 worldPos = new Vector3(inb.ScreenClickPoint.x, inb.ScreenClickPoint.y, 0);
-                    Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
-
-                    //Debug.Log($"handler screenPos : {inb.ScreenClickPoint}");
-                    //Debug.Log($"WorldPos : {worldPos} - ScreenPos : {screenPos}");
-
-                    firstHit = Utility.RaycastFirst(new Vector2(screenPos.x, screenPos.y));
-                }
-                else
-                {
-                    //Debug.Log($"handler screenPos : {inb.ScreenClickPoint}");
-                    firstHit = Utility.RaycastFirst(inb.ScreenClickPoint);
-                }
+                firstHit = Utility.RaycastFirst(inb.ScreenClickPoint);
 
                 //The first hit may not be what we found and hope that it will handle event
                 //but a if that is a child nested deeper that can't handle event (but could blocks raycast)
