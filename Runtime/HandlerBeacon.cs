@@ -36,6 +36,13 @@ namespace E7.Minefield
         {
             get
             {
+                Canvas parentCanvas = GetComponentInParent<Canvas>();
+                if(parentCanvas != null && (parentCanvas.renderMode == RenderMode.ScreenSpaceCamera || parentCanvas.renderMode == RenderMode.WorldSpace))
+                {
+                    Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+                    return new Vector2(screenPos.x, screenPos.y);
+                }
+
                 var rectTransform = GetComponent<RectTransform>();
                 var collider2d = GetComponent<Collider2D>();
                 var collider = GetComponent<Collider>();

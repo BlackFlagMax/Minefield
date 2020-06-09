@@ -42,7 +42,7 @@ namespace E7.Minefield
             if (found is IHandlerBeacon inb)
             {
                 GameObject firstHit;
-                if(isWorldOrCameraSpace)
+                if(isWorldOrCameraSpace && false)
                 {
                     Vector3 worldPos = found.GameObject.transform.position;
                     //Vector3 worldPos = new Vector3(inb.ScreenClickPoint.x, inb.ScreenClickPoint.y, 0);
@@ -74,7 +74,7 @@ namespace E7.Minefield
                 var selectable = found.GameObject.GetComponent<Selectable>();
                 bool interactable = (selectable == null || selectable.IsInteractable());
 
-                Debug.Log($"{found.GameObject.name} - {handleDown} {handleClick} {selectable} {selectable?.IsInteractable()}");
+                //Debug.Log($"{found.GameObject.name} - {handleDown} {handleClick} {selectable} {selectable?.IsInteractable()}");
                 if (!interactable || (!handleDown && !handleUp && !handleClick))
                 {
                     isClickable = false;
